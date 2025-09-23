@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estoque do Vendedor - EcoFlow</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f9f0;
+            color: #333;
+        }
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #a5d6a7;
+        }
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+        }
+        .edit {
+            background-color: #388e3c;
+        }
+        .remove {
+            background-color: #d32f2f;
+        }
+        .add-btn {
+            background-color: #2e7d32;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+</style>
+</head>
+<body>
+<header>
+<h1>EcoFlow - Estoque do Vendedor</h1>
+</header>
+<div class="container">
+<h2>Meus Produtos</h2>
+<button class="btn add-btn">Adicionar Produto</button>
+<table>
+<thead>
+<tr>
+<th>Produto</th>
+<th>Categoria</th>
+<th>Valor (R$)</th>
+<th>Quantidade</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Garrafa PET</td>
+<td>Plástico</td>
+<td>0,50</td>
+<td>500</td>
+<td>
+<button class="btn edit">Editar</button>
+<button class="btn remove">Remover</button>
+</td>
+</tr>
+<tr>
+<td>Lata de Alumínio</td>
+<td>Metal</td>
+<td>2,00</td>
+<td>200</td>
+<td>
+<button class="btn edit">Editar</button>
+<button class="btn remove">Remover</button>
+</td>
+</tr>
+<tr>
+<td>Papelão</td>
+<td>Papel</td>
+<td>0,30</td>
+<td>1000</td>
+<td>
+<button class="btn edit">Editar</button>
+<button class="btn remove">Remover</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

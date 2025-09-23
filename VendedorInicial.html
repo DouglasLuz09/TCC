@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFlow - Painel do Vendedor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f9f4;
+            margin: 0;
+            padding: 0;
+            color: #2e4d38;
+        }
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            background-color: #66bb6a;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+            padding: 15px;
+            text-align: center;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+        .card button {
+            background-color: #2e7d32;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .card button:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+ 
+<header>
+    <h1>Bem-vindo(a) ao Painel do Vendedor - EcoFlow</h1>
+    <p>Gerencie suas vendas e ofertas de materiais recicláveis</p>
+</header>
+ 
+<nav>
+    <a href="#ofertas">Minhas Ofertas</a>
+    <a href="#pedidos">Pedidos Recebidos</a>
+    <a href="#estoque">Estoque</a>
+    <a href="#perfil">Meu Perfil</a>
+</nav>
+ 
+<main>
+    <h2>Painel Rápido</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>Minhas Ofertas</h3>
+            <p>Gerencie os produtos e materiais recicláveis que você está vendendo.</p>
+            <button>Ver Ofertas</button>
+        </div>
+        <div class="card">
+            <h3>Pedidos Recebidos</h3>
+            <p>Acompanhe e responda aos pedidos feitos pelos compradores.</p>
+            <button>Ver Pedidos</button>
+        </div>
+        <div class="card">
+            <h3>Controle de Estoque</h3>
+            <p>Atualize as quantidades e disponibilidade dos materiais.</p>
+            <button>Gerenciar Estoque</button>
+        </div>
+        <div class="card">
+            <h3>Meu Perfil</h3>
+            <p>Atualize suas informações de contato e apresentação.</p>
+            <button>Editar Perfil</button>
+        </div>
+    </div>
+</main>
+ 
+</body>
+</html>

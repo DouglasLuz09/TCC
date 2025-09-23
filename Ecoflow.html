@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Ecoflow</title>
+  <style>
+    :root{
+      --green-1: #0b6b3a;
+      --green-2: #1e9a5a;
+      --bg: linear-gradient(135deg, #ffffff, #e9f6ee, #1e9a5a);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: var(--bg);
+    }
+    .container{
+      max-width:1100px;
+      width:100%;
+      display:flex;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 6px 20px rgba(0,0,0,0.15);
+      background:white;
+    }
+    .left, .right{
+      flex:1;
+      padding:50px 40px;
+    }
+    .left{
+      background:transparent;
+      color:#0b6b3a;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    .left img{
+      width:110px;
+      margin-bottom:20px;
+    }
+    .left h1{
+      font-size:34px;
+      margin-bottom:15px;
+      color:#0b6b3a;
+    }
+    .left p{
+      font-size:17px;
+      line-height:1.6;
+      max-width:420px;
+    }
+    .right{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .login-box{
+      width:100%;
+      max-width:380px;
+    }
+    .tabs{
+      display:flex;
+      margin-bottom:20px;
+      border-bottom:2px solid #eee;
+    }
+    .tab{
+      flex:1;
+      text-align:center;
+      padding:12px;
+      cursor:pointer;
+      font-weight:600;
+      color:var(--green-1);
+      transition:0.3s;
+    }
+    .tab.active{
+      border-bottom:3px solid var(--green-2);
+      color:var(--green-2);
+    }
+    form{
+      display:none;
+      flex-direction:column;
+    }
+    form.active{display:flex;}
+    input{
+      padding:12px;
+      margin:8px 0;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:15px;
+    }
+    .btn{
+      padding:14px;
+      border:none;
+      border-radius:8px;
+      margin-top:12px;
+      font-size:16px;
+      font-weight:600;
+      color:white;
+      background:var(--green-2);
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .btn:hover{background:var(--green-1);}
+    footer{
+      margin-top:30px;
+      font-size:13px;
+      color:#555;
+      text-align:center;
+    }
+    @media(max-width:900px){
+      .container{flex-direction:column;}
+      .left{padding:30px;}
+      .left h1{font-size:26px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.yQSD3n1FNw-zfO4zbLJ8xwHaHQ?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Símbolo de Reciclagem">
+      <h1>Bem-vindo à Ecoflow</h1>
+      <p>
+        Somos uma cooperativa comprometida com a sustentabilidade e a economia circular. 
+        Aqui conectamos compradores e vendedores de materiais recicláveis, 
+        incentivando práticas responsáveis para um futuro mais verde.
+      </p>
+    </div>
+
+    <div class="right">
+      <div class="login-box">
+        <div class="tabs">
+          <div class="tab active" onclick="showForm('comprador')">Comprador</div>
+          <div class="tab" onclick="showForm('vendedor')">Vendedor</div>
+        </div>
+
+        <form id="comprador" class="active">
+          <input type="email" placeholder="Digite seu email" required>
+          <input type="password" placeholder="Digite sua senha" required>
+          <button class="btn" type="submit">Entrar como Comprador</button>
+        </form>
+
+        <form id="vendedor">
+          <input type="email" placeholder="Digite seu email" required>
+          <input type="password" placeholder="Digite sua senha" required>
+          <button class="btn" type="submit">Entrar como Vendedor</button>
+        </form>
+
+        <footer>
+          &copy; 2025 Cooperativa Ecoflow - Todos os direitos reservados.
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showForm(type){
+      document.querySelectorAll(".tab").forEach(tab=>tab.classList.remove("active"));
+      document.querySelectorAll("form").forEach(f=>f.classList.remove("active"));
+
+      document.querySelector(`.tab:nth-child(${type==='comprador'?1:2})`).classList.add("active");
+      document.getElementById(type).classList.add("active");
+    }
+  </script>
+</body>
+</html>
