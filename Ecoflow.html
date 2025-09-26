@@ -139,13 +139,15 @@
           <div class="tab" onclick="showForm('vendedor')">Vendedor</div>
         </div>
 
-        <form id="comprador" class="active">
+        <!-- Formulário comprador -->
+        <form id="comprador" class="active" onsubmit="event.preventDefault(); window.location.href='PerfilComprador.html';">
           <input type="email" placeholder="Digite seu email" required>
           <input type="password" placeholder="Digite sua senha" required>
           <button class="btn" type="submit">Entrar como Comprador</button>
         </form>
 
-        <form id="vendedor">
+        <!-- Formulário vendedor -->
+        <form id="vendedor" onsubmit="event.preventDefault(); window.location.href='VendedorInicial.html';">
           <input type="email" placeholder="Digite seu email" required>
           <input type="password" placeholder="Digite sua senha" required>
           <button class="btn" type="submit">Entrar como Vendedor</button>

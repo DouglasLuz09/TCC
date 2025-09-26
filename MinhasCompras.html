@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minhas Compras - EcoFlow</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+:root {
+  --green-dark:#0b6b3a;
+  --green:#1e9a5a;
+  --light:#f4fdf7;
+  --white:#ffffff;
+  --gold:#ffd700;
+}
+body{margin:0;font-family:"Segoe UI",sans-serif;background:var(--light);}
+header{background:var(--green);color:#fff;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
+header h1{font-size:1.8rem;}
+header a{color:#fff;text-decoration:none;font-weight:500;transition:0.3s;}
+header a:hover{color:#dfffe7;}
+main{padding:30px;max-width:1200px;margin:auto;}
+.banner{background:var(--green-dark);color:#fff;border-radius:20px;padding:30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:30px;box-shadow:0 6px 20px rgba(0,0,0,0.15);}
+.banner .welcome{font-size:1.5rem;margin-bottom:10px;}
+.banner .summary{display:flex;gap:20px;flex-wrap:wrap;}
+.banner .summary div{background:var(--green);padding:15px 25px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+.banner .summary div h3{margin-bottom:5px;color:#fff;font-size:1rem;}
+.banner .summary div p{font-weight:bold;color:#fff;font-size:1.2rem;}
+.filters{display:flex;gap:15px;margin-bottom:20px;flex-wrap:wrap;}
+.filters select, .filters input{padding:8px;border-radius:6px;border:1px solid #ccc;font-size:0.95rem;}
+.filters button{padding:8px 15px;border:none;border-radius:6px;background:var(--green);color:#fff;cursor:pointer;transition:0.3s;font-weight:bold;}
+.filters button:hover{background:var(--green-dark);}
+.recent-purchases{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-bottom:30px;}
+.purchase-card{background:#fff;border-radius:15px;padding:20px;box-shadow:0 6px 20px rgba(0,0,0,0.1);display:flex;flex-direction:column;gap:10px;transition:0.3s;position:relative;}
+.purchase-card img{width:100%;border-radius:12px;object-fit:cover;height:150px;}
+.purchase-card h4{color:var(--green-dark);}
+.purchase-card p{font-size:0.95rem;color:#555;margin:2px 0;}
+.purchase-card .status{font-weight:bold;color:var(--green-dark);}
+.purchase-card .stars{color:var(--gold);}
+.purchase-card button{padding:8px 12px;border:none;border-radius:6px;background:var(--green);color:#fff;cursor:pointer;transition:0.3s;margin-top:10px;font-weight:bold;}
+.purchase-card button:hover{background:var(--green-dark);}
+.notifications{display:flex;overflow-x:auto;gap:20px;padding-bottom:20px;margin-bottom:30px;}
+.notification-card{flex:0 0 250px;background:#fff;padding:20px;border-radius:15px;box-shadow:0 6px 20px rgba(0,0,0,0.1);transition:0.3s;}
+.notification-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.15);}
+.notification-card h4{color:var(--green-dark);margin-bottom:5px;}
+.notification-card p{font-size:0.9rem;color:#555;}
+footer{text-align:center;padding:20px;background:var(--green-dark);color:#fff;border-top-left-radius:20px;border-top-right-radius:20px;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Minhas Compras - EcoFlow</h1>
+<a href="PaginaInicial.html">Sair</a>
+</header>
+
+<main>
+<!-- Banner resumo -->
+<div class="banner">
+<div class="welcome">Olá, João Silva! Aqui estão suas compras recentes:</div>
+<div class="summary">
+  <div><h3>Total de Compras</h3><p>25</p></div>
+  <div><h3>Total Gasto</h3><p>R$ 3.420</p></div>
+  <div><h3>Produtos Diferentes</h3><p>12</p></div>
+</div>
+</div>
+
+<!-- Filtros -->
+<div class="filters">
+  <input type="date" id="startDate">
+  <input type="date" id="endDate">
+  <select id="categoryFilter">
+    <option value="Todos" selected>Todos os produtos</option>
+    <option value="Plástico">Plástico</option>
+    <option value="Vidro">Vidro</option>
+    <option value="Papel">Papel</option>
+    <option value="Metal">Metal</option>
+  </select>
+  <button id="filterBtn">Filtrar</button>
+</div>
+
+<!-- Compras recentes -->
+<div class="recent-purchases" id="recentPurchases">
+  <div class="purchase-card" data-category="Plástico" data-date="12/09/2025">
+    <img src="https://via.placeholder.com/250x150?text=Plástico" alt="Plástico">
+    <h4>Plástico</h4>
+    <p>Quantidade: 10 kg</p>
+    <p>Valor: R$ 620</p>
+    <p class="status">Status: Entregue</p>
+    <p class="stars">Avaliação: ★★★★☆</p>
+    <button>Repetir Compra</button>
+  </div>
+  <div class="purchase-card" data-category="Vidro" data-date="10/09/2025">
+    <img src="https://via.placeholder.com/250x150?text=Vidro" alt="Vidro">
+    <h4>Vidro</h4>
+    <p>Quantidade: 5 kg</p>
+    <p>Valor: R$ 250</p>
+    <p class="status">Status: Em Trânsito</p>
+    <p class="stars">Avaliação: ★★★☆☆</p>
+    <button>Repetir Compra</button>
+  </div>
+  <div class="purchase-card" data-category="Papel" data-date="08/09/2025">
+    <img src="https://via.placeholder.com/250x150?text=Papel" alt="Papel">
+    <h4>Papel</h4>
+    <p>Quantidade: 15 kg</p>
+    <p>Valor: R$ 180</p>
+    <p class="status">Status: Pendente</p>
+    <p class="stars">Avaliação: ★★★★★</p>
+    <button>Repetir Compra</button>
+  </div>
+</div>
+
+<!-- Notificações -->
+<h2>Notificações & Promoções</h2>
+<div class="notifications">
+  <div class="notification-card">
+    <h4>Promoção Plástico</h4>
+    <p>10% de desconto em compras acima de 20 kg.</p>
+  </div>
+  <div class="notification-card">
+    <h4>Compra Confirmada</h4>
+    <p>Seu pedido de 5 kg de Vidro foi confirmado.</p>
+  </div>
+  <div class="notification-card">
+    <h4>Meta Alcançada</h4>
+    <p>Você comprou 20 produtos este mês!</p>
+  </div>
+</div>
+
+</main>
+
+<footer>
+<p>© 2025 EcoFlow - Todos os direitos reservados.</p>
+</footer>
+
+<script>
+// Filtrar compras
+const filterBtn=document.getElementById('filterBtn');
+filterBtn.addEventListener('click',()=>{
+  const start=document.getElementById('startDate').value;
+  const end=document.getElementById('endDate').value;
+  const category=document.getElementById('categoryFilter').value;
+  const cards=document.querySelectorAll('.purchase-card');
+  cards.forEach(card=>{
+    const cat=card.dataset.category;
+    const date=card.dataset.date;
+    let show=true;
+    if(start && date<start.split('-').reverse().join('/')) show=false;
+    if(end && date>end.split('-').reverse().join('/')) show=false;
+    if(category!=='Todos' && cat!==category) show=false;
+    card.style.display=show?'flex':'none';
+  });
+});
+</script>
+
+</body>
+</html>

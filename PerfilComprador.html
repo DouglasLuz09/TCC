@@ -59,36 +59,36 @@
       object-fit: cover;
       border: 3px solid #0f7a3f;
     }
-    .profile-header h2 {
-      margin: 15px 0 5px;
+    .profile-header input {
+      margin-top: 10px;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      text-align: center;
+      width: 250px;
     }
-    .profile-header p {
-      color: #555;
+    .profile-header h2, .profile-header p {
+      margin: 10px 0;
     }
 
-    /* Bio */
-    .bio {
+    /* Bio e Contato */
+    .bio, .contato {
       background: white;
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       margin-bottom: 20px;
     }
-    .bio h3 {
+    .bio h3, .contato h3 {
       margin-bottom: 10px;
       color: #0f7a3f;
     }
-
-    /* Contato */
-    .contato {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .contato h3 {
-      margin-bottom: 10px;
-      color: #0f7a3f;
+    textarea, input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
     }
     .contato a {
       display: flex;
@@ -101,6 +101,33 @@
     }
     .contato a:hover {
       color: #2aa84a;
+    }
+
+    /* Botões */
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-edit {
+      background: #0f7a3f;
+      color: white;
+    }
+    .btn-save {
+      background: #2aa84a;
+      color: white;
+    }
+    .btn-logout {
+      background: #d9534f;
+      color: white;
+      margin-top: 15px;
+    }
+    .btn-logout:hover {
+      background: #b52b27;
     }
 
     footer {
@@ -125,25 +152,40 @@
   <main>
     <!-- Cabeçalho do Perfil -->
     <div class="profile-header">
-      <img src="https://wallpapers.com/images/hd/walter-white-breaking-bad-png-jtd-ts6w5rei1uo6hyvy.png" alt="Foto de Perfil">
-      <h2>Lápis da silva</h2>
-      <p>Membro desde 2024</p>
+      <img id="fotoPerfil" src="https://wallpapers.com/images/hd/walter-white-breaking-bad-png-jtd-ts6w5rei1uo6hyvy.png" alt="Foto de Perfil">
+      <h2 id="nomeExibicao">Lápis da silva</h2>
+      <input id="nomeInput" type="text" value="Lápis da silva" style="display:none;">
+      <p id="membroDesde">Membro desde 2024</p>
     </div>
 
     <!-- Bio -->
     <div class="bio">
       <h3>Sobre mim</h3>
-      <p>Sou comprador ativo no EcoFlow. Tenho interesse em produtos reciclados, móveis sustentáveis e acessórios ecológicos para casa.</p>
+      <p id="bioExibicao">Sou comprador ativo no EcoFlow. Tenho interesse em produtos reciclados, móveis sustentáveis e acessórios ecológicos para casa.</p>
+      <textarea id="bioInput" style="display:none;">Sou comprador ativo no EcoFlow. Tenho interesse em produtos reciclados, móveis sustentáveis e acessórios ecológicos para casa.</textarea>
     </div>
 
     <!-- Contato -->
     <div class="contato">
       <h3>Formas de Contato</h3>
-      <a href="#"><i class="fas fa-envelope"></i> Email: Lapisdasilva123@email.com</a>
-      <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp: (11) 99999-9999</a>
-      <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      <p id="emailExibicao"><a href="mailto:Lapisdasilva123@email.com"><i class="fas fa-envelope"></i> Email: Lapisdasilva123@email.com</a></p>
+      <input id="emailInput" type="email" value="Lapisdasilva123@email.com" style="display:none;">
+
+      <p id="whatsExibicao"><a href="https://wa.me/5511999999999" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: (11) 99999-9999</a></p>
+      <input id="whatsInput" type="text" value="(11) 99999-9999" style="display:none;">
+
+      <p id="facebookExibicao"><a href="https://facebook.com/lapisdasilva" target="_blank"><i class="fab fa-facebook"></i> Facebook: /lapisdasilva</a></p>
+      <input id="facebookInput" type="text" value="/lapisdasilva" style="display:none;">
+
+      <p id="instaExibicao"><a href="https://instagram.com/lapisdasilva" target="_blank"><i class="fab fa-instagram"></i> Instagram: @lapisdasilva</a></p>
+      <input id="instaInput" type="text" value="@lapisdasilva" style="display:none;">
     </div>
+
+    <!-- Botões -->
+    <button id="btnEditar" class="btn btn-edit">Editar Perfil</button>
+    <button id="btnSalvar" class="btn btn-save" style="display:none;">Salvar Alterações</button>
+    <br>
+    <a href="PaginaInicial.html"><button class="btn btn-logout">Sair da Conta</button></a>
   </main>
 
   <footer>
@@ -152,6 +194,51 @@
 
   <script>
     document.getElementById("ano").textContent = new Date().getFullYear();
+
+    const btnEditar = document.getElementById("btnEditar");
+    const btnSalvar = document.getElementById("btnSalvar");
+
+    btnEditar.addEventListener("click", () => {
+      // Mostrar inputs
+      document.querySelectorAll("#nomeInput, #bioInput, #emailInput, #whatsInput, #facebookInput, #instaInput")
+        .forEach(el => el.style.display = "block");
+      document.querySelectorAll("#nomeExibicao, #bioExibicao, #emailExibicao, #whatsExibicao, #facebookExibicao, #instaExibicao")
+        .forEach(el => el.style.display = "none");
+
+      btnEditar.style.display = "none";
+      btnSalvar.style.display = "inline-block";
+    });
+
+    btnSalvar.addEventListener("click", () => {
+      // Nome
+      document.getElementById("nomeExibicao").textContent = document.getElementById("nomeInput").value;
+
+      // Bio
+      document.getElementById("bioExibicao").textContent = document.getElementById("bioInput").value;
+
+      // Contatos clicáveis
+      const email = document.getElementById("emailInput").value;
+      document.getElementById("emailExibicao").innerHTML = `<a href="mailto:${email}"><i class="fas fa-envelope"></i> Email: ${email}</a>`;
+
+      const whats = document.getElementById("whatsInput").value;
+      const whatsClean = whats.replace(/\D/g, ""); // só números
+      document.getElementById("whatsExibicao").innerHTML = `<a href="https://wa.me/55${whatsClean}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: ${whats}</a>`;
+
+      const fb = document.getElementById("facebookInput").value;
+      document.getElementById("facebookExibicao").innerHTML = `<a href="https://facebook.com/${fb.replace("/", "")}" target="_blank"><i class="fab fa-facebook"></i> Facebook: ${fb}</a>`;
+
+      const insta = document.getElementById("instaInput").value;
+      document.getElementById("instaExibicao").innerHTML = `<a href="https://instagram.com/${insta.replace("@", "")}" target="_blank"><i class="fab fa-instagram"></i> Instagram: ${insta}</a>`;
+
+      // Alternar exibição
+      document.querySelectorAll("#nomeInput, #bioInput, #emailInput, #whatsInput, #facebookInput, #instaInput")
+        .forEach(el => el.style.display = "none");
+      document.querySelectorAll("#nomeExibicao, #bioExibicao, #emailExibicao, #whatsExibicao, #facebookExibicao, #instaExibicao")
+        .forEach(el => el.style.display = "block");
+
+      btnEditar.style.display = "inline-block";
+      btnSalvar.style.display = "none";
+    });
   </script>
 
 </body>

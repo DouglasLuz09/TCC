@@ -1,109 +1,240 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoFlow - Painel do Vendedor</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f9f4;
-            margin: 0;
-            padding: 0;
-            color: #2e4d38;
-        }
-        header {
-            background-color: #2e7d32;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        nav {
-            background-color: #66bb6a;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        main {
-            padding: 20px;
-        }
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-            padding: 15px;
-            text-align: center;
-        }
-        .card h3 {
-            margin-top: 0;
-            color: #2e7d32;
-        }
-        .card button {
-            background-color: #2e7d32;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .card button:hover {
-            background-color: #1b5e20;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Completo do Vendedor - EcoFlow</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root {
+  --green-dark:#0b6b3a;
+  --green:#1e9a5a;
+  --light:#f4fdf7;
+  --white:#ffffff;
+  --gray:#666;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
+body{background:var(--light);color:#333;}
+header{background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 15px rgba(0,0,0,0.2);position:sticky;top:0;z-index:100;}
+header h1{font-size:1.6rem;font-weight:bold;letter-spacing:1px;}
+nav a{color:#fff;text-decoration:none;margin-left:25px;font-weight:500;transition:0.3s;}
+nav a:hover{color:#dfffe7;}
+main{padding:40px;max-width:1200px;margin:auto;display:grid;grid-template-columns:3fr 1fr;gap:30px;}
+.tabs{display:flex;gap:10px;margin-bottom:20px;grid-column:span 2;}
+.tab-btn{padding:12px 25px;border:none;border-radius:10px;background:var(--green);color:#fff;cursor:pointer;font-weight:bold;transition:0.3s;}
+.tab-btn.active,.tab-btn:hover{background:var(--green-dark);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+.cards{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:30px;}
+.card{flex:1;min-width:200px;background:#fff;border-radius:15px;padding:20px;box-shadow:0 6px 20px rgba(0,0,0,0.1);display:flex;align-items:center;gap:15px;transition:0.3s;opacity:0;transform:translateY(20px);}
+.card i{font-size:2rem;color:var(--green);}
+.card h3{margin-bottom:5px;color:var(--green-dark);}
+.card p{font-size:1.1rem;font-weight:bold;}
+.card.show{opacity:1;transform:translateY(0);}
+.profile-card,.dashboard,.history{background:#fff;border-radius:18px;padding:30px;box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+.profile-card img{width:150px;height:150px;border-radius:50%;border:5px solid var(--green);margin-bottom:15px;object-fit:cover;display:none;cursor:pointer;transition:0.3s;}
+.profile-display{width:150px;height:150px;border-radius:50%;border:5px solid var(--green);margin-bottom:15px;object-fit:cover;}
+.social-links{margin-bottom:20px;}
+.social-links a{display:inline-flex;margin:0 10px;align-items:center;justify-content:center;width:45px;height:45px;border-radius:50%;background:var(--green);color:#fff;text-decoration:none;font-size:20px;transition:0.3s;}
+.social-links a:hover{background:var(--green-dark);}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;text-align:left;}
+.info-box{background: var(--light);border-radius:14px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+.info-box h3{color: var(--green-dark);margin-bottom:10px;font-size:1.2rem;}
+.field-display{margin:5px 0;font-size:1rem;}
+.field-input{width:100%;padding:8px;margin:5px 0;border-radius:6px;border:1px solid #ccc;font-size:1rem;display:none;}
+.btn-edit{display:inline-block;margin-top:20px;background:var(--green);color:#fff;padding:10px 20px;border-radius:10px;font-weight:bold;border:none;cursor:pointer;transition:0.3s;}
+.btn-edit:hover{background:var(--green-dark);}
+footer{text-align:center;padding:20px;background:var(--green-dark);color:#fff;margin-top:40px;}
+table{width:100%;border-collapse:collapse;margin-top:20px;}
+table th,table td{padding:12px;border-bottom:1px solid #ccc;text-align:left;}
+table th{background:var(--green);color:#fff;border-radius:8px;}
+.chart-container{margin-top:20px;}
+.notifications{background:#fff;padding:20px;border-radius:15px;box-shadow:0 6px 20px rgba(0,0,0,0.1);}
+.notifications h3{color:var(--green-dark);margin-bottom:10px;}
+.notifications ul{list-style:none;}
+.notifications li{padding:10px;border-bottom:1px solid #ccc;}
+</style>
 </head>
 <body>
- 
+
 <header>
-    <h1>Bem-vindo(a) ao Painel do Vendedor - EcoFlow</h1>
-    <p>Gerencie suas vendas e ofertas de materiais recicláveis</p>
-</header>
- 
+<h1>Painel Completo do Vendedor - EcoFlow</h1>
 <nav>
-    <a href="#ofertas">Minhas Ofertas</a>
-    <a href="#pedidos">Pedidos Recebidos</a>
-    <a href="#estoque">Estoque</a>
-    <a href="#perfil">Meu Perfil</a>
+  <a href="PaginaInicial.html">Sair</a>
 </nav>
- 
+</header>
+
 <main>
-    <h2>Painel Rápido</h2>
-    <div class="card-container">
-        <div class="card">
-            <h3>Minhas Ofertas</h3>
-            <p>Gerencie os produtos e materiais recicláveis que você está vendendo.</p>
-            <button>Ver Ofertas</button>
-        </div>
-        <div class="card">
-            <h3>Pedidos Recebidos</h3>
-            <p>Acompanhe e responda aos pedidos feitos pelos compradores.</p>
-            <button>Ver Pedidos</button>
-        </div>
-        <div class="card">
-            <h3>Controle de Estoque</h3>
-            <p>Atualize as quantidades e disponibilidade dos materiais.</p>
-            <button>Gerenciar Estoque</button>
-        </div>
-        <div class="card">
-            <h3>Meu Perfil</h3>
-            <p>Atualize suas informações de contato e apresentação.</p>
-            <button>Editar Perfil</button>
-        </div>
+<div class="tabs">
+  <button class="tab-btn active" data-tab="dashboardTab">Dashboard</button>
+  <button class="tab-btn" data-tab="profileTab">Perfil</button>
+  <button class="tab-btn" data-tab="historyTab">Histórico</button>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboardTab" class="tab-content active dashboard">
+  <div class="cards">
+    <div class="card"><i class="fas fa-box"></i><div><h3>Materiais Vendidos</h3><p>85 kg</p></div></div>
+    <div class="card"><i class="fas fa-dollar-sign"></i><div><h3>Lucro</h3><p>R$ 5.230</p></div></div>
+    <div class="card"><i class="fas fa-star"></i><div><h3>Avaliação</h3><p>4.2 ⭐</p></div></div>
+    <div class="card"><i class="fas fa-user-plus"></i><div><h3>Novos Clientes</h3><p>12</p></div></div>
+  </div>
+  <div class="chart-container">
+    <canvas id="salesChart"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="materialsChart"></canvas>
+  </div>
+</div>
+
+<!-- Perfil -->
+<div id="profileTab" class="tab-content profile-card">
+  <img id="profileImage" src="https://i.pravatar.cc/200?img=3" alt="Foto do vendedor">
+  <img class="profile-display" id="profileDisplay" src="https://i.pravatar.cc/200?img=3">
+  <div class="social-links">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <div class="info">
+    <div class="info-box">
+      <h3>Informações Pessoais</h3>
+      <div class="field-display" id="nameDisplay">João Silva</div>
+      <input type="text" class="field-input" id="nameInput" value="João Silva">
+      <div class="field-display" id="emailDisplay">joao.silva@ecoflow.com</div>
+      <input type="email" class="field-input" id="emailInput" value="joao.silva@ecoflow.com">
+      <div class="field-display" id="phoneDisplay">(81) 91234-5678</div>
+      <input type="tel" class="field-input" id="phoneInput" value="(81) 91234-5678">
     </div>
-</main>
- 
+    <div class="info-box">
+      <h3>Desempenho e Preferências</h3>
+      <div class="field-display" id="materialsDisplay">85 materiais vendidos</div>
+      <input type="number" class="field-input" id="materialsInput" value="85">
+      <div class="field-display" id="profitDisplay">R$ 5.230 lucro acumulado</div>
+      <input type="text" class="field-input" id="profitInput" value="R$ 5.230">
+      <div class="field-display" id="categoryDisplay">Categoria: Plástico</div>
+      <select class="field-input" id="categoryInput">
+        <option value="Plástico" selected>Plástico</option>
+        <option value="Vidro">Vidro</option>
+        <option value="Papel">Papel</option>
+        <option value="Metal">Metal</option>
+      </select>
+    </div>
+  </div>
+  <input type="file" id="profilePic" accept="image/*" style="display:none;">
+  <button class="btn-edit" id="editBtn">✏️ Editar</button>
+</div>
+
+<!-- Histórico -->
+<div id="historyTab" class="tab-content history">
+  <h2>Histórico de Vendas</h2>
+  
+  <!-- Filtros -->
+  <div style="display:flex; flex-wrap:wrap; gap:15px; margin-bottom:15px;">
+    <input type="date" id="startDate">
+    <input type="date" id="endDate">
+    <select id="materialFilter">
+      <option value="Todos" selected>Todos os materiais</option>
+      <option value="Plástico">Plástico</option>
+      <option value="Vidro">Vidro</option>
+      <option value="Papel">Papel</option>
+      <option value="Metal">Metal</option>
+    </select>
+    <select id="sortFilter">
+      <option value="data" selected>Ordenar por Data</option>
+      <option value="quantidade">Ordenar por Quantidade</option>
+      <option value="valor">Ordenar por Valor</option>
+    </select>
+    <button id="filterBtn" class="btn-edit">Aplicar</button>
+  </div>
+  
+  <table id="salesTable">
+    <thead>
+      <tr><th>Data</th><th>Material</th><th>Quantidade</th><th>Valor</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>12/09/2025</td><td>Plástico</td><td>10</td><td>620</td></tr>
+      <tr><td>10/09/2025</td><td>Vidro</td><td>5</td><td>250</td></tr>
+      <tr><td>08/09/2025</td><td>Papel</td><td>15</td><td>180</td></tr>
+      <tr><td>05/09/2025</td><td>Metal</td><td>8</td><td>400</td></tr>
+      <tr><td>01/09/2025</td><td>Plástico</td><td>12</td><td>720</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Notificações -->
+<div class="notifications">
+  <h3>Notificações Recentes</h3>
+  <ul>
+    <li>Nova venda: 5kg de Vidro - R$ 250</li>
+    <li>Nova avaliação: ⭐⭐⭐⭐ - Cliente Maria</li>
+    <li>Meta mensal atingida: 80kg vendidos!</li>
+  </ul>
+</div>
+
+<footer>
+<p>© 2025 EcoFlow - Todos os direitos reservados.</p>
+</footer>
+
+<script>
+// Abas
+const tabs=document.querySelectorAll('.tab-btn');
+const tabContents=document.querySelectorAll('.tab-content');
+tabs.forEach(tab=>{tab.addEventListener('click',()=>{tabs.forEach(t=>t.classList.remove('active'));tab.classList.add('active');tabContents.forEach(c=>c.classList.remove('active'));document.getElementById(tab.dataset.tab).classList.add('active');});});
+
+// Perfil
+const editBtn=document.getElementById('editBtn');
+const profilePic=document.getElementById('profilePic');
+const profileImage=document.getElementById('profileImage');
+const profileDisplay=document.getElementById('profileDisplay');
+const fields=[{display:'nameDisplay',input:'nameInput'},{display:'emailDisplay',input:'emailInput'},{display:'phoneDisplay',input:'phoneInput'},{display:'materialsDisplay',input:'materialsInput'},{display:'profitDisplay',input:'profitInput'},{display:'categoryDisplay',input:'categoryInput'}];
+let editing=false;
+editBtn.addEventListener('click',()=>{editing=!editing;if(editing){editBtn.textContent='💾 Salvar';profileImage.style.display='block';profileDisplay.style.display='none';profileImage.style.cursor='pointer';fields.forEach(f=>{document.getElementById(f.display).style.display='none';document.getElementById(f.input).style.display='block';});}else{editBtn.textContent='✏️ Editar';profileImage.style.display='none';profileDisplay.style.display='block';profileImage.style.cursor='default';fields.forEach(f=>{const value=document.getElementById(f.input).value;document.getElementById(f.display).style.display='block';document.getElementById(f.display).textContent=f.display.includes('materials')?`${value} materiais vendidos`:f.display.includes('profit')?`${value} lucro acumulado`:f.display.includes('category')?`Categoria: ${value}`:value;document.getElementById(f.input).style.display='none';});}});
+profileImage.addEventListener('click',()=>{profilePic.click();});
+profilePic.addEventListener('change',e=>{const file=e.target.files[0];if(file){const reader=new FileReader();reader.onload=evt=>{profileImage.src=evt.target.result;};reader.readAsDataURL(file);}});
+
+// Charts
+const salesCtx=document.getElementById('salesChart').getContext('2d');
+new Chart(salesCtx,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'],datasets:[{label:'Vendas Mensais (kg)',data:[12,15,20,18,25,22,30,28,35],borderColor:'rgba(30,154,90,1)',backgroundColor:'rgba(30,154,90,0.2)',tension:0.3} ] },options:{responsive:true,plugins:{legend:{display:true}}}});
+
+const materialsCtx=document.getElementById('materialsChart').getContext('2d');
+new Chart(materialsCtx,{type:'doughnut',data:{labels:['Plástico','Vidro','Papel','Metal'],datasets:[{data:[40,20,15,10],backgroundColor:['#1e9a5a','#0b6b3a','#a3d9a5','#c2f0c2']}]},options:{responsive:true,plugins:{legend:{position:'bottom'}}}});
+
+// Animar cards
+const cards=document.querySelectorAll('.card');
+window.addEventListener('load',()=>{cards.forEach((card,i)=>{setTimeout(()=>{card.classList.add('show');},i*200);});});
+
+// Filtro e ordenação do histórico
+const filterBtn = document.getElementById('filterBtn');
+const salesTable = document.getElementById('salesTable').getElementsByTagName('tbody')[0];
+filterBtn.addEventListener('click', () => {
+  const startDate = document.getElementById('startDate').value;
+  const endDate = document.getElementById('endDate').value;
+  const material = document.getElementById('materialFilter').value;
+  const sortBy = document.getElementById('sortFilter').value;
+
+  let rows = Array.from(salesTable.rows);
+  
+  rows.forEach(row => {
+    const date = row.cells[0].innerText;
+    const mat = row.cells[1].innerText;
+    let show = true;
+    if (startDate && date < startDate.split('-').reverse().join('/')) show = false;
+    if (endDate && date > endDate.split('-').reverse().join('/')) show = false;
+    if (material !== 'Todos' && mat !== material) show = false;
+    row.style.display = show ? '' : 'none';
+  });
+
+  rows = Array.from(salesTable.rows).filter(r=>r.style.display!=='none');
+  rows.sort((a,b) => {
+    if(sortBy==='data'){const da=a.cells[0].innerText.split('/').reverse().join('');const db=b.cells[0].innerText.split('/').reverse().join('');return da.localeCompare(db);}
+    if(sortBy==='quantidade') return parseInt(a.cells[2].innerText) - parseInt(b.cells[2].innerText);
+    if(sortBy==='valor') return parseInt(a.cells[3].innerText) - parseInt(b.cells[3].innerText);
+  });
+  rows.forEach(row => salesTable.appendChild(row));
+});
+</script>
+
 </body>
 </html>

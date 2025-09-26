@@ -1,94 +1,221 @@
-<!doctype html>
-<div style="width:120px;display:grid;place-items:center">
-<!-- Ilustração circular -->
-<div style="width:110px;height:110px;border-radius:999px;background:linear-gradient(135deg,var(--green),var(--green-dark));display:grid;place-items:center;box-shadow:0 12px 30px rgba(14,44,33,0.12)">
-<svg width="66" height="66" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 2l2 3-3 1 1 3-3-2-3 2 1-3-3-1 2-3 3 1 2-3z" fill="white"/>
-</svg>
-</div>
-</div>
-</div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EcoFlow - Início</title>
+  <style>
+    :root {
+      --green-dark: #0b6b3a;
+      --green: #1e9a5a;
+      --green-light: #c8f0d7;
+      --bg: #f5faf7;
+      --text-dark: #0a2b18;
+      --text-muted: #444;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<div style="margin-top:18px;display:flex;gap:12px;align-items:center">
-<div style="flex:1">
-<strong style="display:block">Rápido</strong>
-<small style="color:var(--muted)">Cadastre em menos de 2 minutos</small>
-</div>
-<div style="flex:1">
-<strong style="display:block">Seguro</strong>
-<small style="color:var(--muted)">Verificação de usuários e avaliações</small>
-</div>
-</div>
-</aside>
-</section>
+    body {
+      background: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
 
+    header {
+      padding: 20px 30px;
+      background: white;
+      border-bottom: 2px solid var(--green-light);
+    }
 
-<section id="como-funciona">
-<h2 style="color:var(--green-dark);margin-bottom:12px">Como funciona</h2>
-<div class="how">
-<div class="how-step">
-<h4>1 — Cadastre</h4>
-<p>Descreva o material, quantidade e local. Tire fotos para facilitar a negociação.</p>
-</div>
-<div class="how-step">
-<h4>2 — Negocie</h4>
-<p>Receba propostas ou defina um preço fixo. Use o chat para combinar detalhes.</p>
-</div>
-<div class="how-step">
-<h4>3 — Entregue</h4>
-<p>Agende coleta ou combine entrega. Emita comprovantes para controle e rastreabilidade.</p>
-</div>
-</div>
-</section>
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--green-dark);
+    }
 
+    .logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
 
-<section style="margin-top:18px">
-<h2 style="color:var(--green-dark);margin-bottom:12px">Serviços populares</h2>
-<div class="grid" id="servicos">
-<div class="card">
-<h3>Compra de papel e papelão</h3>
-<p>Coletas agendadas para volumes grandes e pequenos.</p>
-</div>
-<div class="card">
-<h3>Plásticos PET</h3>
-<p>Classificação por cor e qualidade para melhores ofertas.</p>
-</div>
-<div class="card">
-<h3>Metais</h3>
-<p>Pagamentos rápidos para sucata metálica — ferros, alumínios e cobre.</p>
-</div>
-</div>
-</section>
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, var(--green-light), #fff);
+    }
+    .hero h1 {
+      font-size: 38px;
+      color: var(--green-dark);
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: auto;
+    }
+    .hero .actions {
+      margin-top: 25px;
+    }
+    .btn {
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: white;
+      border: none;
+      margin-right: 15px;
+    }
+    .btn-primary:hover {
+      background: var(--green-dark);
+    }
+    .btn-secondary {
+      background: white;
+      color: var(--green-dark);
+      border: 2px solid var(--green);
+    }
+    .btn-secondary:hover {
+      background: var(--green-light);
+    }
 
+    /* Seções */
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    section h2 {
+      text-align: center;
+      color: var(--green-dark);
+      margin-bottom: 40px;
+      font-size: 28px;
+    }
 
-<section style="margin-top:26px">
-<h2 style="color:var(--green-dark);margin-bottom:12px">Depoimentos</h2>
-<div class="testimonials">
-<blockquote style="margin-bottom:12px">"Com a EcoFlow eu consegui vender todo o meu material e ainda fiz parceria com uma cooperativa local." — Maria, recicladora</blockquote>
-<blockquote>"Plataforma prática e segura. Recomendo para compradores que buscam suprir pequenas indústrias." — João, comprador</blockquote>
-</div>
-</section>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 70px;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--green);
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
 
-</main>
+    footer {
+      background: var(--green-dark);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+    }
 
+    @media(max-width: 600px) {
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
 
-<footer id="contato">
-<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center">
-<div>
-<strong>EcoFlow</strong>
-<div style="font-size:13px;color:var(--muted)">Rua Exemplo, 123 — São Paulo, SP · contato@ecoflow.com</div>
-</div>
-<div style="display:flex;gap:12px;align-items:center">
-<a href="#" style="text-decoration:none;color:var(--muted)">Política de Privacidade</a>
-<a href="#" style="text-decoration:none;color:var(--muted)">Termos</a>
-</div>
-</div>
-</footer>
+  <header>
+    <div class="logo">
+      <img src="https://www.reciclagemnomeioambiente.com.br/wp-content/uploads/2013/08/simbolo-internacional-da-reciclagem.jpg" alt="Reciclagem">
+      EcoFlow
+    </div>
+  </header>
 
+  <section class="hero">
+    <h1>Bem-vindo à EcoFlow </h1>
+    <p>
+      Conectamos pessoas e empresas para comprar, vender e doar materiais recicláveis.  
+      Sustentabilidade, economia circular e responsabilidade social em um só lugar.
+    </p>
+    <div class="actions">
+      <a href="cadastro.html" class="btn btn-primary">Cadastrar-se</a>
+     
+    </div>
+  </section>
 
-</div>
-</div>
+  <section>
+    <h2>♻️ Materiais Aceitos</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://img.elo7.com.br/product/zoom/240C87D/adesivos-coleta-seletiva-lixo-reciclado-pte-c-4-unid-adesivo.jpg" alt="Plástico">
+        <h3>Plásticos</h3>
+        <p>Garrafas PET, embalagens, plásticos rígidos e flexíveis.</p>
+      </div>
+      <div class="card">
+        <img src="https://http2.mlstatic.com/adesivo-vinil-lixo-reciclavel-papel-14x18cm-5-unidades-D_NQ_NP_808648-MLB27726224658_072018-F.jpg" alt="Papelão">
+        <h3>Papel e Papelão</h3>
+        <p>Caixas, papéis usados, jornais, revistas e papelão prensado.</p>
+      </div>
+      <div class="card">
+        <img src="https://http2.mlstatic.com/D_NQ_NP_2X_807656-MLB46467219192_062021-F.jpg" alt="Metal">
+        <h3>Metais</h3>
+        <p>Latas de alumínio, sucata metálica, ferro e aço.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.awsli.com.br/1000x1000/173/173680/produto/6133997/5dcf7f1100.jpg" alt="Vidro">
+        <h3>Vidros</h3>
+        <p>Garrafas, potes, cacos de vidro separados por cor.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <section>
+    <h2>🌍 Por que escolher a EcoFlow?</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Confiabilidade</h3>
+        <p>Negociações transparentes entre compradores e vendedores.</p>
+      </div>
+      <div class="card">
+        <h3>Sustentabilidade</h3>
+        <p>Ajude a reduzir resíduos e apoiar a economia circular.</p>
+      </div>
+      <div class="card">
+        <h3>Comunidade</h3>
+        <p>Conecte-se a fornecedores, compradores e doadores de recicláveis.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 EcoFlow — Todos os direitos reservados.
+  </footer>
+
 </body>
 </html>

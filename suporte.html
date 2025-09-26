@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoFlow — Suporte</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9fdf9;
+      color: #0f5132;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #0f7a3f;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    nav a {
+      background: white;
+      color: #0f7a3f;
+      margin-left: 10px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      background: #2aa84a;
+      color: white;
+    }
+    main {
+      flex: 1;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0f7a3f;
+      margin-bottom: 20px;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #0f7a3f;
+    }
+    .faq-question:hover {
+      background: #e9f7ee;
+    }
+    .faq-answer {
+      display: none;
+      padding: 15px;
+      border-top: 1px solid #ddd;
+      color: #333;
+      background: #fdfdfd;
+    }
+
+    footer {
+      background: #0f7a3f;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>EcoFlow — Suporte</h1>
+    <nav>
+      <a href="Inicial.html">Início</a>
+      <a href="ExplorarProdutos.html">Minhas Compras</a>
+      <a href="PerfilComprador.html">Meu Perfil</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Perguntas Frequentes</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Como funciona a compra de materiais reciclados?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        Você pode navegar pelos produtos disponíveis, adicionar ao carrinho e finalizar a compra normalmente. O vendedor entra em contato para combinar a entrega.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Posso vender meus materiais também?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        Sim! Basta criar uma conta como vendedor, cadastrar seus materiais recicláveis e aguardar compradores interessados.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Quais formas de pagamento são aceitas?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        Aceitamos pagamentos via cartão de crédito, Pix e boleto bancário.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>O EcoFlow garante a segurança da compra?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        Sim. Trabalhamos com sistema de pagamento seguro e só liberamos o valor ao vendedor após a confirmação da entrega.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Como entro em contato com o suporte?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        Você pode falar conosco através da aba "Contato" no site ou pelo email suporte@ecoflow.com.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© <span id="ano"></span> EcoFlow — Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    document.getElementById("ano").textContent = new Date().getFullYear();
+
+    // FAQ toggle
+    const questions = document.querySelectorAll(".faq-question");
+    questions.forEach(q => {
+      q.addEventListener("click", () => {
+        const answer = q.nextElementSibling;
+        const icon = q.querySelector("i");
+
+        if (answer.style.display === "block") {
+          answer.style.display = "none";
+          icon.classList.remove("fa-chevron-up");
+          icon.classList.add("fa-chevron-down");
+        } else {
+          answer.style.display = "block";
+          icon.classList.remove("fa-chevron-down");
+          icon.classList.add("fa-chevron-up");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
