@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EcoFlow - Início</title>
+  <title>EcoFlow - Reciclagem Inteligente</title>
+  <meta name="description" content="EcoFlow conecta pessoas e empresas para comprar, vender e doar materiais recicláveis. Promovendo sustentabilidade, economia circular e responsabilidade social.">
+
   <style>
     :root {
       --green-dark: #0b6b3a;
@@ -11,7 +13,7 @@
       --green-light: #c8f0d7;
       --bg: #f5faf7;
       --text-dark: #0a2b18;
-      --text-muted: #444;
+      --text-muted: #555;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
@@ -23,10 +25,15 @@
       line-height: 1.6;
     }
 
+    /* Header */
     header {
-      padding: 20px 30px;
+      padding: 15px 30px;
       background: white;
       border-bottom: 2px solid var(--green-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -36,11 +43,24 @@
       font-weight: bold;
       color: var(--green-dark);
     }
-
     .logo img {
       width: 40px;
       height: 40px;
       margin-right: 10px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--green-dark);
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--green);
     }
 
     /* Hero */
@@ -63,6 +83,8 @@
     .hero .actions {
       margin-top: 25px;
     }
+
+    /* Botões */
     .btn {
       padding: 14px 28px;
       border-radius: 8px;
@@ -71,6 +93,7 @@
       cursor: pointer;
       text-decoration: none;
       transition: all 0.3s ease;
+      display: inline-block;
     }
     .btn-primary {
       background: var(--green);
@@ -109,6 +132,7 @@
       gap: 20px;
     }
 
+    /* Cards */
     .card {
       background: white;
       padding: 20px;
@@ -123,6 +147,7 @@
     .card img {
       width: 70px;
       margin-bottom: 15px;
+      border-radius: 8px;
     }
     .card h3 {
       margin-bottom: 10px;
@@ -133,6 +158,7 @@
       color: var(--text-muted);
     }
 
+    /* Footer */
     footer {
       background: var(--green-dark);
       color: white;
@@ -144,58 +170,69 @@
     @media(max-width: 600px) {
       .hero h1 { font-size: 28px; }
       .hero p { font-size: 16px; }
+      nav { text-align: center; margin-top: 15px; }
+      nav a { margin: 0 10px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Cabeçalho -->
   <header>
     <div class="logo">
-      <img src="https://www.reciclagemnomeioambiente.com.br/wp-content/uploads/2013/08/simbolo-internacional-da-reciclagem.jpg" alt="Reciclagem">
+      <img src="https://www.reciclagemnomeioambiente.com.br/wp-content/uploads/2013/08/simbolo-internacional-da-reciclagem.jpg" alt="Símbolo internacional da reciclagem">
       EcoFlow
     </div>
+    <nav>
+      <a href="#materiais">Materiais</a>
+      <a href="#porque">Por que EcoFlow?</a>
+      <a href="cadastro.html">Cadastro</a>
+      
+    </nav>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
-    <h1>Bem-vindo à EcoFlow </h1>
+    <h1>Bem-vindo à EcoFlow</h1>
     <p>
       Conectamos pessoas e empresas para comprar, vender e doar materiais recicláveis.  
       Sustentabilidade, economia circular e responsabilidade social em um só lugar.
     </p>
     <div class="actions">
       <a href="cadastro.html" class="btn btn-primary">Cadastrar-se</a>
-     
+      <a href="Ecoflow.html" class="btn btn-secondary">Entrar</a>
     </div>
   </section>
 
-  <section>
+  <!-- Materiais Aceitos -->
+  <section id="materiais">
     <h2>♻️ Materiais Aceitos</h2>
     <div class="grid">
       <div class="card">
-        <img src="https://img.elo7.com.br/product/zoom/240C87D/adesivos-coleta-seletiva-lixo-reciclado-pte-c-4-unid-adesivo.jpg" alt="Plástico">
+        <img src="https://img.elo7.com.br/product/zoom/240C87D/adesivos-coleta-seletiva-lixo-reciclado-pte-c-4-unid-adesivo.jpg" alt="Reciclagem de Plásticos" loading="lazy">
         <h3>Plásticos</h3>
         <p>Garrafas PET, embalagens, plásticos rígidos e flexíveis.</p>
       </div>
       <div class="card">
-        <img src="https://http2.mlstatic.com/adesivo-vinil-lixo-reciclavel-papel-14x18cm-5-unidades-D_NQ_NP_808648-MLB27726224658_072018-F.jpg" alt="Papelão">
+        <img src="https://http2.mlstatic.com/adesivo-vinil-lixo-reciclavel-papel-14x18cm-5-unidades-D_NQ_NP_808648-MLB27726224658_072018-F.jpg" alt="Reciclagem de Papéis e Papelão" loading="lazy">
         <h3>Papel e Papelão</h3>
         <p>Caixas, papéis usados, jornais, revistas e papelão prensado.</p>
       </div>
       <div class="card">
-        <img src="https://http2.mlstatic.com/D_NQ_NP_2X_807656-MLB46467219192_062021-F.jpg" alt="Metal">
+        <img src="https://http2.mlstatic.com/D_NQ_NP_2X_807656-MLB46467219192_062021-F.jpg" alt="Reciclagem de Metais" loading="lazy">
         <h3>Metais</h3>
         <p>Latas de alumínio, sucata metálica, ferro e aço.</p>
       </div>
       <div class="card">
-        <img src="https://cdn.awsli.com.br/1000x1000/173/173680/produto/6133997/5dcf7f1100.jpg" alt="Vidro">
+        <img src="https://cdn.awsli.com.br/1000x1000/173/173680/produto/6133997/5dcf7f1100.jpg" alt="Reciclagem de Vidros" loading="lazy">
         <h3>Vidros</h3>
         <p>Garrafas, potes, cacos de vidro separados por cor.</p>
       </div>
-      
     </div>
   </section>
 
-  <section>
+  <!-- Por que escolher a EcoFlow -->
+  <section id="porque">
     <h2>🌍 Por que escolher a EcoFlow?</h2>
     <div class="grid">
       <div class="card">
@@ -213,6 +250,7 @@
     </div>
   </section>
 
+  <!-- Rodapé -->
   <footer>
     &copy; 2025 EcoFlow — Todos os direitos reservados.
   </footer>

@@ -121,23 +121,37 @@
     <h1>Criar Conta</h1>
     <p>Cadastre-se para comprar, vender ou doar materiais recicláveis.</p>
 
-    <form>
-      <input type="text" placeholder="Nome completo" required>
-      <input type="email" placeholder="E-mail" required>
-      <input type="tel" placeholder="Telefone / WhatsApp" required>
-      <input type="password" placeholder="Senha" required>
-      <input type="password" placeholder="Confirmar senha" required>
-      
-      <select required>
-        <option value="">Selecione seu perfil</option>
-        <option value="comprador">Comprador</option>
-        <option value="vendedor">Vendedor</option>
-      </select>
+    <form id="cadastroForm">
+  <input type="text" placeholder="Nome completo" required>
+  <input type="email" placeholder="E-mail" required>
+  <input type="tel" placeholder="Telefone / WhatsApp" required>
+  <input type="password" placeholder="Senha" required>
+  <input type="password" placeholder="Confirmar senha" required>
+  
+  <select id="perfil" required>
+    <option value="">Selecione seu perfil</option>
+    <option value="comprador">Comprador</option>
+    <option value="vendedor">Vendedor</option>
+  </select>
 
-      <a href="Inicial.html">
-  <button type="button">Cadastrar</button>
-</a>
-    </form>
+  <button type="submit">Cadastrar</button>
+</form>
+
+<script>
+  document.getElementById("cadastroForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // impede envio real do form
+
+    const perfil = document.getElementById("perfil").value;
+
+    if (perfil === "vendedor") {
+      window.location.href = "VendedorInicial.html";
+    } else if (perfil === "comprador") {
+      window.location.href = "inicial.html";
+    } else {
+      alert("Selecione um perfil para continuar!");
+    }
+  });
+</script>
 
     <div class="link">
       Já tem conta? <a href="Ecoflow.html">Entrar</a>
